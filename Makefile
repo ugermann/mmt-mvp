@@ -59,6 +59,6 @@ MOSES  = $(CWD)/code/moses
 $(CWD)/bin/moses:
 	mkdir -p $(CWD)/code 
 	-cd $(CWD)/code && git clone https://github.com/moses-smt/mosesdecoder.git moses
-	cd ${MOSES} && git pull && ${bjam}
+	cd ${MOSES} && git pull && git checkout ${moses-tag} && ${bjam}
 	mkdir -p ${@D}
 	ln $(MOSES)/bin/moses $(CWD)/bin/moses 
