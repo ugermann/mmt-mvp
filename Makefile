@@ -6,6 +6,7 @@ SHELL = bash
 sourceforge = http://downloads.sourceforge.net/project
 
 all: mvp-v0.2.1
+# mvp-v0.2.1: irstlm_version = irstlm-5.80.08
 mvp-v0.2.1: irstlm_url = $(sourceforge)/irstlm/irstlm/irstlm-5.80/irstlm-5.80.08.tgz
 mvp-v0.2.1: cmph_url   = $(sourceforge)/cmph/cmph/cmph-2.0.tar.gz
 mvp-v0.2.1: moses-tag  = mmt-mvp-v0.2.1
@@ -32,7 +33,7 @@ CWD      := $(shell cd . && pwd)
 OPT      := $(CWD)/opt
 
 # INSTALLATION OF CMPH
-CMPH := $(CWD)/code/$(shell basename ${cmph_url} .tar.gz)
+CMPH = $(CWD)/code/$(shell basename ${cmph_url} .tar.gz)
 cmph: | $(OPT)/bin/cmph
 $(OPT)/bin/cmph: 
 	$(call sfget,${cmph_url},${CMPH})
@@ -40,7 +41,7 @@ $(OPT)/bin/cmph:
 
 # INSTALLATION OF IRSTLM
 irstlm_version = $(basename $(notdir $(irstlm_url)))
-IRSTLM        := $(CWD)/code/$(irstlm_version)/trunk
+IRSTLM        = $(CWD)/code/$(irstlm_version)/trunk
 irstlm: | $(OPT)/bin/build-lm.sh
 $(OPT)/bin/build-lm.sh: 
 	$(call sfget,${irstlm_url},$(shell dirname ${IRSTLM}))
